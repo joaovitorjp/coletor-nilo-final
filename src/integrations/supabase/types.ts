@@ -31,7 +31,7 @@ export type Database = {
           description?: string | null
           gramatura?: number | null
           id?: string
-          quantity?: number
+          quantity: number
         }
         Update: {
           barcode?: string
