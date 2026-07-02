@@ -14,13 +14,170 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      collection_items: {
+        Row: {
+          barcode: string
+          collection_id: string
+          created_at: string
+          description: string | null
+          gramatura: number | null
+          id: string
+          quantity: number
+        }
+        Insert: {
+          barcode: string
+          collection_id: string
+          created_at?: string
+          description?: string | null
+          gramatura?: number | null
+          id?: string
+          quantity: number
+        }
+        Update: {
+          barcode?: string
+          collection_id?: string
+          created_at?: string
+          description?: string | null
+          gramatura?: number | null
+          id?: string
+          quantity?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collection_items_collection_id_fkey"
+            columns: ["collection_id"]
+            isOneToOne: false
+            referencedRelation: "collections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      collections: {
+        Row: {
+          created_at: string
+          finished_at: string | null
+          id: string
+          number: number
+          status: string
+          store_code: string
+          store_name: string
+        }
+        Insert: {
+          created_at?: string
+          finished_at?: string | null
+          id?: string
+          number: number
+          status?: string
+          store_code: string
+          store_name: string
+        }
+        Update: {
+          created_at?: string
+          finished_at?: string | null
+          id?: string
+          number?: number
+          status?: string
+          store_code?: string
+          store_name?: string
+        }
+        Relationships: []
+      }
+      product_inventory: {
+        Row: {
+          barcode: string
+          created_at: string
+          days_without_sale: number | null
+          description: string | null
+          id: string
+          internal_code: string | null
+          section: string | null
+          status: string
+          stock_coverage_days: number | null
+          store: string | null
+          updated_at: string
+        }
+        Insert: {
+          barcode: string
+          created_at?: string
+          days_without_sale?: number | null
+          description?: string | null
+          id?: string
+          internal_code?: string | null
+          section?: string | null
+          status?: string
+          stock_coverage_days?: number | null
+          store?: string | null
+          updated_at?: string
+        }
+        Update: {
+          barcode?: string
+          created_at?: string
+          days_without_sale?: number | null
+          description?: string | null
+          id?: string
+          internal_code?: string | null
+          section?: string | null
+          status?: string
+          stock_coverage_days?: number | null
+          store?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          barcode: string
+          created_at: string
+          description: string | null
+          gramatura: number
+          id: string
+          internal_code: string | null
+          package_type: string | null
+          updated_at: string
+        }
+        Insert: {
+          barcode: string
+          created_at?: string
+          description?: string | null
+          gramatura?: number
+          id?: string
+          internal_code?: string | null
+          package_type?: string | null
+          updated_at?: string
+        }
+        Update: {
+          barcode?: string
+          created_at?: string
+          description?: string | null
+          gramatura?: number
+          id?: string
+          internal_code?: string | null
+          package_type?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      inventory_distinct_sections: {
+        Args: never
+        Returns: {
+          section: string
+        }[]
+      }
+      inventory_distinct_stores: {
+        Args: never
+        Returns: {
+          store: string
+        }[]
+      }
+      next_collection_number: {
+        Args: { p_store_code: string }
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never
