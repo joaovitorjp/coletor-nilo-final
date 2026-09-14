@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { STORES, storeLabel } from "@/lib/stores";
@@ -8,9 +8,7 @@ import { toast } from "sonner";
 import { Loader2, Store } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 
-export const Route = createFileRoute("/")({ component: Home });
-
-function Home() {
+export default function Home() {
   const [selected, setSelected] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -28,7 +26,7 @@ function Home() {
       .single();
     setLoading(false);
     if (error) { toast.error(error.message); return; }
-    navigate({ to: "/coleta/$id", params: { id: data.id } });
+    navigate(`/coleta/${data.id}`);
   };
 
   return (
