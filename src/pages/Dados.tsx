@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useRef, useState } from "react";
 import * as XLSX from "xlsx";
 import { AppShell } from "@/components/AppShell";
@@ -21,7 +21,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export const Route = createFileRoute("/dados")({ component: DadosGate });
+
 
 // Senha para acessar a aba Dados. Altere aqui para mudar.
 const DADOS_PASSWORD = "Nilo@@2026";
@@ -29,7 +29,7 @@ const AUTH_KEY = "dados_auth_ok";
 
 const CHUNK_SIZE = 1000;
 
-function DadosGate() {
+export default function DadosGate() {
   const [authed, setAuthed] = useState(false);
   const [pwd, setPwd] = useState("");
   const [error, setError] = useState("");

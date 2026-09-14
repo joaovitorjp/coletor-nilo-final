@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { Input } from "@/components/ui/input";
@@ -21,11 +21,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export const Route = createFileRoute("/historico")({ component: Historico });
-
 type Coll = { id: string; number: number; store_code: string; store_name: string; status: string; finished_at: string | null; created_at: string };
 
-function Historico() {
+export default function Historico() {
   const [list, setList] = useState<Coll[] | null>(null);
   const [store, setStore] = useState<string>("all");
   const [q, setQ] = useState("");
@@ -94,7 +92,7 @@ function Historico() {
             {filtered.map((c) => (
               <li key={c.id} className="rounded-2xl border border-border bg-card p-3 shadow-[var(--shadow-card)]">
                 <div className="flex items-center gap-3">
-                  <Link to="/coleta/$id/resumo" params={{ id: c.id }} className="flex flex-1 items-center gap-3 min-w-0">
+                  <Link to={`/coleta/${c.id}/resumo`} className="flex flex-1 items-center gap-3 min-w-0">
                     <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl text-primary-foreground" style={{ background: "var(--gradient-primary)" }}>
                       <span className="text-[10px] font-medium leading-none opacity-80">N°</span>
                       <span className="text-sm font-bold leading-tight">{String(c.number).padStart(3, "0")}</span>

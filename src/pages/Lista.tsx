@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { CheckCircle2, Boxes, HelpCircle, Loader2, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/lista")({ component: ListaPage });
+
 
 type Status = "area_venda" | "estoque_virtual" | "nao_verificado";
 
@@ -46,7 +46,7 @@ const STATUS_CLASS: Record<Status, string> = {
 
 const PAGE_SIZE = 50;
 
-function ListaPage() {
+export default function ListaPage() {
   const [items, setItems] = useState<Item[]>([]);
   const [sections, setSections] = useState<string[]>([]);
   const [stores, setStores] = useState<string[]>([]);

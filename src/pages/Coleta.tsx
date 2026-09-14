@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
@@ -10,14 +10,14 @@ import { Camera, Check, Keyboard, Loader2, Package, Plus, PlusCircle, Trash2 } f
 import { BarcodeScanner } from "@/components/BarcodeScanner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 
-export const Route = createFileRoute("/coleta/$id")({ component: ColetaPage });
+
 
 type Item = { id: string; barcode: string; quantity: number; created_at: string; description: string | null; gramatura: number | null };
 type Coll = { id: string; number: number; store_code: string; store_name: string; status: string };
 type Product = { internal_code: string | null; barcode: string; description: string | null; package_type: string | null; gramatura: number };
 
-function ColetaPage() {
-  const { id } = Route.useParams();
+export default function ColetaPage() {
+  const { id = "" } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [coll, setColl] = useState<Coll | null>(null);
   const [items, setItems] = useState<Item[]>([]);
@@ -192,7 +192,7 @@ function ColetaPage() {
     setFinishing(false);
     if (error) { toast.error(error.message); return; }
     toast.success("Coleta finalizada");
-    navigate({ to: "/historico" });
+    navigate("/historico");
   };
 
   if (!coll) return <AppShell><div className="flex justify-center pt-10"><Loader2 className="h-6 w-6 animate-spin text-muted-foreground" /></div></AppShell>;
