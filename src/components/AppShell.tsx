@@ -1,4 +1,4 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import { Database, Download, History, List, ScanLine } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
