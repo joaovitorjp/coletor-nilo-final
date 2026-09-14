@@ -92,7 +92,7 @@ export default function Historico() {
             {filtered.map((c) => (
               <li key={c.id} className="rounded-2xl border border-border bg-card p-3 shadow-[var(--shadow-card)]">
                 <div className="flex items-center gap-3">
-                  <Link to="/coleta/$id/resumo" params={{ id: c.id }} className="flex flex-1 items-center gap-3 min-w-0">
+                  <Link to={`/coleta/${c.id}/resumo`} className="flex flex-1 items-center gap-3 min-w-0">
                     <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl text-primary-foreground" style={{ background: "var(--gradient-primary)" }}>
                       <span className="text-[10px] font-medium leading-none opacity-80">N°</span>
                       <span className="text-sm font-bold leading-tight">{String(c.number).padStart(3, "0")}</span>
