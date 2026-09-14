@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { STORES } from "@/lib/stores";
 import { Download, Inbox, Loader2, Search, Trash2 } from "lucide-react";
-import { buildCsv, downloadCsv } from "@/lib/csv";
+import { downloadColetaPdf } from "@/lib/pdf";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import {
@@ -49,10 +49,16 @@ export default function Historico() {
   }, [list, store, q]);
 
   const download = async (c: Coll) => {
-    const { data, error } = await supabase.from("collection_items").select("barcode,quantity").eq("collection_id", c.id).order("created_at");
+    const { data, error } = await supabase.from("collection_items").select("barcode,description,quantity").eq("collection_id", c.id).order("created_at");
     if (error) { toast.error(error.message); return; }
-    const fname = `coleta_${c.store_code}_${String(c.number).padStart(3, "0")}.csv`;
-    downloadCsv(fname, buildCsv((data ?? []) as any));
+    downloadColetaPdf({
+      filename: `coleta_${c.store_code}_${String(c.number).padStart(3, "0")}.pdf`,
+      number: c.number,
+      storeCode: c.store_code,
+      storeName: c.store_name,
+      date: c.finished_at ?? c.created_at,
+      rows: (data ?? []) as any,
+    });
   };
 
   const remove = async (c: Coll) => {

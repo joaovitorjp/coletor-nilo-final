@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { Toaster } from "@/components/ui/sonner";
 import { CheckCircle2, Download, History, Loader2 } from "lucide-react";
-import { buildCsv, downloadCsv } from "@/lib/csv";
+import { downloadColetaPdf } from "@/lib/pdf";
 
 export default function Resumo() {
   const { id = "" } = useParams<{ id: string }>();
