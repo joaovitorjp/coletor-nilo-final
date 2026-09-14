@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { Input } from "@/components/ui/input";
@@ -21,11 +21,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export const Route = createFileRoute("/historico")({ component: Historico });
-
 type Coll = { id: string; number: number; store_code: string; store_name: string; status: string; finished_at: string | null; created_at: string };
 
-function Historico() {
+export default function Historico() {
   const [list, setList] = useState<Coll[] | null>(null);
   const [store, setStore] = useState<string>("all");
   const [q, setQ] = useState("");

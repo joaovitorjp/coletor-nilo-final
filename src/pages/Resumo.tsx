@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
@@ -7,10 +7,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { CheckCircle2, Download, History, Loader2 } from "lucide-react";
 import { buildCsv, downloadCsv } from "@/lib/csv";
 
-export const Route = createFileRoute("/coleta/$id/resumo")({ component: Resumo });
-
-function Resumo() {
-  const { id } = Route.useParams();
+export default function Resumo() {
+  const { id = "" } = useParams<{ id: string }>();
   const [coll, setColl] = useState<any>(null);
   const [items, setItems] = useState<Array<{ barcode: string; quantity: number }>>([]);
 

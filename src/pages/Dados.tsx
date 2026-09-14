@@ -29,7 +29,7 @@ const AUTH_KEY = "dados_auth_ok";
 
 const CHUNK_SIZE = 1000;
 
-function DadosGate() {
+export default function DadosGate() {
   const [authed, setAuthed] = useState(false);
   const [pwd, setPwd] = useState("");
   const [error, setError] = useState("");
